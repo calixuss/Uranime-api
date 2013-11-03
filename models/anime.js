@@ -16,6 +16,9 @@ self = {
     }
 };
 
-module.exports = function(db){
-    return db.define('anime', self.def);
+module.exports = function(app){
+    var client = app.get("dbClient");
+
+    return client.define('anime', self.def);
+    
 };

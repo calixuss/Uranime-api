@@ -11,6 +11,7 @@ self = {
     }
 };
 
-module.exports = function(db){
-    return db.define('tokens', self.def);
+module.exports = function(app){
+	var client = app.get("dbClient");
+    return client.define('tokens', self.def);
 };

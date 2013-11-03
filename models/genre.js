@@ -11,6 +11,7 @@ self = {
     }
 };
 
-module.exports = function(db){
-    return db.define('genre', self.def);
+module.exports = function(app){
+	 var client = app.get("dbClient");
+    return client.define('genre', self.def);
 };

@@ -12,7 +12,7 @@ self = {
 
     methods: {
         classMethods: {
-            getByEpisodesWithUser: function(episodes){
+            getByEpisodesWithUser: function(episodes, client){
                 var query, ids = function(array){
                     var r = [];
                     for(var i = 0; i < array.length; i++)
@@ -27,7 +27,7 @@ self = {
                     "ORDER BY last DESC " +
                     "LIMIT 0,10";
 
-                return db.client.query(query);
+                return client.query(query);
             },
             removePasswordEmailAddGravatarByArray: function(array){
                 var that = this,
@@ -53,6 +53,7 @@ self = {
     }
 };
 
-module.exports = function(db){
-    return db.define('user_episodes', self.def, self.methods);
+module.exports = function(app){
+     var client = app.get("dbClient");
+    return client.define('user_episodes', self.def, self.methods);
 };

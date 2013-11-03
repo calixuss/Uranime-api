@@ -14,6 +14,7 @@ self = {
     }
 };
 
-module.exports = function(db){
-    return db.define('episodes', self.def);
+module.exports = function(app){
+	 var client = app.get("dbClient");
+    return client.define('episodes', self.def);
 };

@@ -33,6 +33,7 @@ self = {
     }
 };
 
-module.exports = function(db){
-    return db.define('users', self.def, self.methods)
+module.exports = function(app){
+    var client = app.get("dbClient");
+    return client.define('users', self.def, self.methods)
 };

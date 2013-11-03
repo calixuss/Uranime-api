@@ -1,17 +1,17 @@
-module.exports = function(db){
+module.exports = function(app){
 
-    var Anime = require('./anime')(db),
-        Episode = require('./episode')(db),
-        Genre = require('./genre')(db),
-        Synonym = require('./synonym')(db),
-        SeenEpisode = require('./seenEpisode')(db),
-        User = require('./user')(db),
-        Site = require('./site')(db),
-        Request = require('./request')(db),
-        RequestAttribute = require('./requestAttribute')(db),
-        RequestInfo = require('./requestInfo')(db),
-        Token = require('./token')(db),
-        ScrapeType = require('./scrapeType')(db);
+    var Anime = require('./anime')(app),
+        Episode = require('./episode')(app),
+        Genre = require('./genre')(app),
+        Synonym = require('./synonym')(app),
+        SeenEpisode = require('./seenEpisode')(app),
+        User = require('./user')(app),
+        Site = require('./site')(app),
+        Request = require('./request')(app),
+        RequestAttribute = require('./requestAttribute')(app),
+        RequestInfo = require('./requestInfo')(app),
+        Token = require('./token')(app),
+        ScrapeType = require('./scrapeType')(app);
 
 
     // Relationships

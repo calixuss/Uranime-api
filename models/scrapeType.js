@@ -10,6 +10,7 @@ self = {
     }
 };
 
-module.exports = function(db){
-    return db.define('scrape_types', self.def)
+module.exports = function(app){
+	 var client = app.get("dbClient");
+    return client.define('scrape_types', self.def)
 };
