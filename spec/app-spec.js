@@ -17,7 +17,8 @@ describe("Application is running", function(){
 describe("User exist", function(){
 	it("It should return a user with id 2 ", function(){
          request("http://localhost:3000/api/users/2", function(err,response,body){
-         	
+         	expect(body.id),toEqual(2);
+         	done();
          });
 		
 	});
