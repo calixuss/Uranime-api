@@ -10,16 +10,10 @@ var addDetailsId = function(model){
     var json = model.toJSON();
     json.details_id = model.id;
     return json;
-   }    
+   }
+
 
 AnimeController = {
-
-    
-   /**
-
-    */   
-   
-   
 
    /*
     * GET anime by id.

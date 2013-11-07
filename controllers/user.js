@@ -59,7 +59,6 @@ exports.getLibrary = function(req, res){
 
 exports.getById = function(req, res){
   var User = req.app.get("models").User;
-  console.log("USerModel "+User);
   getUserById(res, req.params.id, null,User);
 };
 

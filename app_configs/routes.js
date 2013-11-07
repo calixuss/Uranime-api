@@ -11,6 +11,8 @@ module.exports = function(app){
 
 var Controllers = app.get("controllers");
 
+app.get("/",Controllers.Index.index);
+
 //Anime route
 app.get('/api/anime/:id', app.get("Auth").token, Controllers.Anime.getById);
 
