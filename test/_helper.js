@@ -9,6 +9,7 @@
  */
 
  function createTestUser(User){
+ 	console.log("now creating test user");
 	  User.create({
 	  	nick:'AwesomeUser',
 	  	joined: new Date(),

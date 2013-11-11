@@ -7,15 +7,15 @@
    
 function setTestingConfig(app){
   console.log("Testing config loaded")
-  var client = new Sequelize(dbconfig.test.database,dbconfig.test.username,dbconfig.test.password,{
+  var client = new Sequelize('anime','animeuser','animepass',{
       logging:console.log,
       dialect:'sqlite',
       storage:'uranime.sqlite',
       define:{
-        underscored:true,
-        freezeTableName:true,
-        syncOnAssociation:true,
-        timestamps:false
+          underscored: true,
+          freezeTableName: true,
+          syncOnAssociation: true,
+          timestamps: false
       }
 
   });

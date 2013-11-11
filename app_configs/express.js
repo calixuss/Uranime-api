@@ -64,8 +64,13 @@ app.configure('development', function(){
 app.configure('test',function(){
     console.log("test env");
      app.set('port', 3001);
-     dbconfig.SetTestingConfig(app);  
-     app.get("dbClient").sync();
+     dbconfig.SetTestingConfig(app); 
+     var client = app.get("dbClient"); 
+    client.sync({force:true}).success(function(){
+         console.log("sucessfully created tables");
+     }).error(function(err){
+        console.log("could not create tables "+err);
+     })
 
 });
 
