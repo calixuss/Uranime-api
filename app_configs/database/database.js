@@ -4,9 +4,29 @@
   var Sequelize = require('sequelize')
       ,dbconfig = require("./dbconfig");
 
-  module.exports = function(app){
+   
+function setTestingConfig(app){
+  console.log("Testing config loaded")
+  var client = new Sequelize(dbconfig.test.database,dbconfig.test.username,dbconfig.test.password,{
+      logging:console.log,
+      dialect:'sqlite',
+      storage:'uranime.sqlite',
+      define:{
+        underscored:true,
+        freezeTableName:true,
+        syncOnAssociation:true,
+        timestamps:false
+      }
 
-        var client = new Sequelize(dbconfig.db.database, dbconfig.db.username, dbconfig.db.password, {
+  });
+
+  app.set("sequelize",Sequelize);
+    app.set("dbClient",client);
+    app.set("dbconfig",dbconfig);
+};
+
+function setProductionConfig(app){
+   var client = new Sequelize(dbconfig.db.database, dbconfig.db.username, dbconfig.db.password, {
           host: dbconfig.db.host,
           port: dbconfig.db.port,
           logging: dbconfig.db.logging,
@@ -25,3 +45,7 @@
     app.set("dbClient",client);
     app.set("dbconfig",dbconfig);
 };
+
+
+module.exports.SetTestingConfig = setTestingConfig;
+module.exports.SetProductionConfig = setProductionConfig;

@@ -14,7 +14,7 @@ app.set("Auth",require("./app_configs/middleware/auth"));
 //Add configuration to the express instance
 require("./app_configs/express")(app);
 //bootstrap database connection
-require(("./app_configs/database/database"))(app);
+//require(("./app_configs/database/database"))(app);
 
 //bootstrap models
 app.set("models",require("./models")(app));

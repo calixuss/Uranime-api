@@ -5,7 +5,8 @@
 
  //Load dependencies
 var express = require('express')
-    ,path = require('path');
+    ,path = require('path')
+    ,dbconfig = require("./database/database");
 
 module.exports = function(app){
 
@@ -48,7 +49,24 @@ app.configure(function(){
     app.use(express.static(path.join(__dirname, 'client/build')));
 });
 
+app.configure('production', function(){
+    console.log("prod env");
+ dbconfig.SetProductionConfig(app);
+ app.use(express.errorHandler());
+});
+
 app.configure('development', function(){
+    console.log("dev env");
+  dbconfig.SetProductionConfig(app);  
   app.use(express.errorHandler());
 });
+
+app.configure('test',function(){
+    console.log("test env");
+     app.set('port', 3001);
+     dbconfig.SetTestingConfig(app);  
+     app.get("dbClient").sync();
+
+});
+
 }
