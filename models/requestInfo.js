@@ -11,7 +11,7 @@ self = {
     }
 };
 
-module.exports = function(app){
-	 var client = app.get("dbClient");
+module.exports = function(client){
+	
     return client.define('anime_request_scrape_info', self.def);
 };

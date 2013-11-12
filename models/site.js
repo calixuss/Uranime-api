@@ -12,7 +12,7 @@ self = {
     }
 };
 
-module.exports = function(app){
-	 var client = app.get("dbClient");
+module.exports = function(client){
+	
     return client.define('sites', self.def)
 };

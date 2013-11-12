@@ -53,7 +53,7 @@ self = {
     }
 };
 
-module.exports = function(app){
-     var client = app.get("dbClient");
+module.exports = function(client){
+    
     return client.define('user_episodes', self.def, self.methods);
 };

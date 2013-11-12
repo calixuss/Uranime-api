@@ -1,17 +1,18 @@
-module.exports = function(app){
-
-    var Anime = require('./anime')(app),
-        Episode = require('./episode')(app),
-        Genre = require('./genre')(app),
-        Synonym = require('./synonym')(app),
-        SeenEpisode = require('./seenEpisode')(app),
-        User = require('./user')(app),
-        Site = require('./site')(app),
-        Request = require('./request')(app),
-        RequestAttribute = require('./requestAttribute')(app),
-        RequestInfo = require('./requestInfo')(app),
-        Token = require('./token')(app),
-        ScrapeType = require('./scrapeType')(app);
+module.exports = function(client)
+{
+     console.log("Hello");
+    var Anime = require('./anime')(client),
+        Episode = require('./episode')(client),
+        Genre = require('./genre')(client),
+        Synonym = require('./synonym')(client),
+        SeenEpisode = require('./seenEpisode')(client),
+        User = require('./user')(client),
+        Site = require('./site')(client),
+        Request = require('./request')(client),
+        RequestAttribute = require('./requestAttribute')(client),
+        RequestInfo = require('./requestInfo')(client),
+        Token = require('./token')(client),
+        ScrapeType = require('./scrapeType')(client);
 
 
     // Relationships
@@ -53,18 +54,24 @@ module.exports = function(app){
 
     Token
       .belongsTo(User);   
+
+
+   
+
+
   return {
-    Anime: Anime,
-    Episode: Episode,
-    Genre: Genre,
-    Synonym: Synonym,
-    SeenEpisode: SeenEpisode,
-    User: User,
-    Site: Site,
-    Request: Request,
-    RequestAttribute: RequestAttribute,
-    RequestInfo: RequestInfo,
-    ScrapeType: ScrapeType,
-    Token: Token
-  };
+      Anime: Anime,
+      Episode: Episode,
+      Genre: Genre,
+      Synonym: Synonym,
+      SeenEpisode: SeenEpisode,
+      User: User,
+      Site: Site,
+      Request: Request,
+      RequestAttribute: RequestAttribute,
+      RequestInfo: RequestInfo,
+      ScrapeType: ScrapeType,
+      Token: Token
+
+    };
 }

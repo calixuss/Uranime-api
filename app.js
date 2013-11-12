@@ -17,7 +17,8 @@ require("./app_configs/express")(app);
 //require(("./app_configs/database/database"))(app);
 
 //bootstrap models
-app.set("models",require("./models")(app));
+//  require()
+//app.set("models",require("./models/")(app));
 
 
 //bootstrap controlers

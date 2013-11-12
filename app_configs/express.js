@@ -37,8 +37,9 @@ module.exports = function(app){
     }
 });
 
+
+
 app.configure(function(){
-    app.set('port', process.env.PORT || 3000);
     app.set('views', __dirname + '/views');
     app.set('view engine', 'jade');
     app.use(express.favicon());
@@ -49,28 +50,22 @@ app.configure(function(){
     app.use(express.static(path.join(__dirname, 'client/build')));
 });
 
-app.configure('production', function(){
-    console.log("prod env");
- dbconfig.SetProductionConfig(app);
- app.use(express.errorHandler());
-});
-
 app.configure('development', function(){
+     app.set('port', process.env.PORT || 3000);
     console.log("dev env");
   dbconfig.SetProductionConfig(app);  
   app.use(express.errorHandler());
 });
 
 app.configure('test',function(){
-    console.log("test env");
      app.set('port', 3001);
      dbconfig.SetTestingConfig(app); 
-     var client = app.get("dbClient"); 
+     /*var client = app.get("dbClient"); 
     client.sync({force:true}).success(function(){
          console.log("sucessfully created tables");
      }).error(function(err){
         console.log("could not create tables "+err);
-     })
+     })*/
 
 });
 

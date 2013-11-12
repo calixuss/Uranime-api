@@ -10,7 +10,6 @@ self = {
     }
 };
 
-module.exports = function(app){
-	 var client = app.get("dbClient");
-    return client.define('anime_request_scrape_attributes', self.def);
+module.exports = function(client){
+	return client.define('anime_request_scrape_attributes', self.def);
 };

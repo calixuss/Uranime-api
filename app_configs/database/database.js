@@ -6,7 +6,7 @@
 
    
 function setTestingConfig(app){
-  console.log("Testing config loaded")
+  
   var client = new Sequelize('anime','animeuser','animepass',{
       logging:console.log,
       dialect:'sqlite',
@@ -20,9 +20,10 @@ function setTestingConfig(app){
 
   });
 
+  app.set("models",require("../../models")(client));
   app.set("sequelize",Sequelize);
-    app.set("dbClient",client);
-    app.set("dbconfig",dbconfig);
+  app.set("dbClient",client);
+  app.set("dbconfig",dbconfig);
 };
 
 function setProductionConfig(app){
@@ -41,9 +42,10 @@ function setProductionConfig(app){
           }
         });
     
-    app.set("sequelize",Sequelize);
-    app.set("dbClient",client);
-    app.set("dbconfig",dbconfig);
+     app.set("models",require("../../models")(client));
+     app.set("sequelize",Sequelize);
+     app.set("dbClient",client);
+     app.set("dbconfig",dbconfig);
 };
 
 
