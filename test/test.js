@@ -8,23 +8,32 @@
 //Load modules
 var should = require("../node_modules/should"),
     request = require("../node_modules/request"),
-    app = require("../app").app,
+    app = require("../app"),
     helper = require("./_helper");
 /*
  * this hooks prepares the database with dummy data.
  */
-beforeEach(function(){
+beforeEach(function(done){
+ setTimeout(function(){
+    helper.CreateTestUser(app.get("models").User).then(function(){done()});
+      }, 3000);    
    
-    helper.CreateTestUser(app.get("models").User);
 })
 
 describe("User", function(){
-    it("User should exists", function(){
-        request("http://localhost:#{app.settings.port}/api/users/1",function(err,response,body){
+  var _body = null;
+   before(function(done){
+         request("http://localhost:3001/api/users/1",function(err,response,body){
            if(err)throw err;
-           response.StatusCode.should.equal(200);
-           done();
-        });
+            _body = body;
+          done();
+        });  
+
+   });
+    it("Get User by id equal 1", function(){
+        var usr = JSON.parse(_body);
+        usr.id.should.equal(1);
+        
     });
 	
 })

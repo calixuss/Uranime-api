@@ -10,7 +10,8 @@
 
  function createTestUser(User){
  	
-	  User.create({
+
+	return  User.create({
 	  	nick:'AwesomeUser',
 	  	joined: new Date(),
         email: 'awesome@awesomeness.com',
@@ -18,7 +19,7 @@
         password: "03d67c263c27a453ef65b29e30334727333ccbcd",
         pw_version: 1
 	  }).success(function(user){
-         console.log("user created")
+         
 	  }).error(function(err){
 
 	  	console.log("failed to create test user "+err);

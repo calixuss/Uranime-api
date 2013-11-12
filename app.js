@@ -6,6 +6,7 @@
 //Load modules
 var express = require('express');
 
+
 //Init express
 var app = express();
 //load authnetication middleware 
@@ -30,4 +31,4 @@ require("./app_configs/routes")(app);
 app.listen(app.get("port"));
 console.log('Express app started on port '+app.get("port"));
 
-exports.app = app;
+module.exports = app;

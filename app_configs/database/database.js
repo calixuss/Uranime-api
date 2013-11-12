@@ -20,10 +20,17 @@ function setTestingConfig(app){
 
   });
 
+  
   app.set("models",require("../../models")(client));
   app.set("sequelize",Sequelize);
   app.set("dbClient",client);
   app.set("dbconfig",dbconfig);
+
+  client.sync().success(function(){
+    console.log("Awesome");
+  }).error(function(err){
+    console.log("Not some awesome "+err);
+  })
 };
 
 function setProductionConfig(app){
