@@ -14,28 +14,40 @@ var should = require("../node_modules/should"),
  * this hooks prepares the database with dummy data.
  */
 beforeEach(function(done){
- setTimeout(function(){
+ /*setTimeout(function(){
     helper.CreateTestUser(app.get("models").User).then(function(){done()});
-      }, 3000);    
+      }, 3000);*/
+
+    var client = app.get("dbClient");
+      client.sync().success(function(){
+          
+           helper.CreateTestUser(app.get("models").User).then(function(){});
+          done();
+      }).error(function(err){
+        throw err;
+
+      })
+        
    
 })
 
 describe("User", function(){
   var _body = null;
    before(function(done){
-         request("http://localhost:3001/api/users/1",function(err,response,body){
-           if(err)throw err;
-            _body = body;
-          done();
-        });  
+           request("http://localhost:3001/api/users/1",function(err,response,body){
+               if(err)throw err;
+                _body = body;
+                done();
+               });
+        })  
 
-   });
-    it("Get User by id equal 1", function(){
-        var usr = JSON.parse(_body);
-        usr.id.should.equal(1);
+   
+    it("User with id equal 1 should exists", function(done){
+       var usr = JSON.parse(_body);
+            usr.id.should.equal(1);
+           done();
         
-    });
-	
+	   })
 })
 
 
